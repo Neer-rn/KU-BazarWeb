@@ -26,9 +26,8 @@ public static void main(String[] args) {
         FirebaseApp.initializeApp(options);
         } catch (Exception e) {
         System.out.println("An error occurred while fetching the service key.");
-        System.out.println(e.getMessage());
+        System.out.println(e.getMessage()); }
         }
 
-        }
 
-        }
+}
