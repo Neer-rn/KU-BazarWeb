@@ -1,4 +1,4 @@
-.Home{
+.Up_bar{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -48,6 +48,30 @@ margin-right: 60px;
   right: 130px;
     position: absolute;
 }  
+
+.middleParagraph{
+  position: absolute;
+  left: 25%;
+}
+
+.subTitle{
+  font-size: 45px;
+  color: #ffffff;
+}
+
+.hook{
+  display: flex;
+  align-items: center;
+  margin-left: 10%;
+}
+.hook_2{
+  color: #ffffff;
+}
+.description{
+  font-family: poppins;
+
+}
+
 
 
 
