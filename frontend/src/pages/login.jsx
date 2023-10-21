@@ -10,6 +10,7 @@ const Login = () => {
                 <li>Help</li>
                 <li>About us</li>
                 <li>Contact us</li>
+                <li>Sign up</li>
             </div>
                 <img src="../resources/img/home.svg" alt="home"></img>
             </div>
