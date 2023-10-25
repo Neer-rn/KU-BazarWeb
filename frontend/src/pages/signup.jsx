@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import "./signup.css";
 
 const Signup = () => {
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+  
+    const handleSignUp = (event) => {
+      event.preventDefault();
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Signed up successfully
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          // Error occurred
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+        });
+    };
     return (
         <div className="Signup">
             <div className="Up_bar">
@@ -23,6 +45,25 @@ const Signup = () => {
                 </div>
                     <img className="logo" src="../resources/img/logo.png" alt="logo"></img>
             </div>   
+
+      <form onSubmit={handleSignUp}>
+        <label>
+          Name:
+          <input type="text" value={name} onChange={(event) => setName(event.target.value)} />
+        </label>
+        <br />
+        <label>
+          Email:
+          <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+        </label>
+        <br />
+        <button type="submit">Sign Up</button>
+      </form>
            
             
 
@@ -31,3 +72,54 @@ const Signup = () => {
 }
 
 export default Signup;
+/*import React, { useState } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
+const SignUp = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSignUp = (event) => {
+    event.preventDefault();
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // Signed up successfully
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        // Error occurred
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
+
+  return (
+    <div>
+      <h1>Sign Up</h1>
+      <form onSubmit={handleSignUp}>
+        <label>
+          Name:
+          <input type="text" value={name} onChange={(event) => setName(event.target.value)} />
+        </label>
+        <br />
+        <label>
+          Email:
+          <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+        </label>
+        <br />
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  );
+};
+
+export default SignUp;*/
