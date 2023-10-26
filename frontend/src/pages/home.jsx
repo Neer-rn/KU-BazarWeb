@@ -1,6 +1,7 @@
 import React from "react";
 import "./home.css";
-import '../resources/img/logo.png';
+import { ReactComponent as XLogo } from '../resources/img/xlogo.svg';
+
 
 const Home = () => {
     return (
@@ -32,7 +33,8 @@ const Home = () => {
                                                 No Fees Attached.Join Today!!<br></br>
                     </p>
 
-                    <img className="xlogo" src="../resources/img/xlogo.svg" alt="xlogo"></img>
+                    <XLogo />
+
             </div>   
            
             
