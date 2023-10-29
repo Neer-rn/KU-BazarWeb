@@ -3,13 +3,18 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Objects;
 
+import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Service;
 
 @SpringBootApplication
+@Service
 public class firebaseAuth {
 
 public static void main(String[] args) {
@@ -27,6 +32,27 @@ public static void main(String[] args) {
         System.out.println("An error occurred while fetching the service key.");
         System.out.println(e.getMessage()); }
         }
+
+        
+
+        public void initialize() {
+                try {
+                    FileInputStream serviceAccount = new FileInputStream("path/to/your/serviceAccountKey.json");
+        
+                    FirebaseOptions options = FirebaseOptions.builder()
+                            .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                            .setDatabaseUrl("https://your-firebase-project-id.firebaseio.com")
+                            .build();
+        
+                    if (FirebaseApp.getApps().isEmpty()) {
+                        FirebaseApp.initializeApp(options);
+                    }
+                } catch (IOException e) {
+                        logger.error("Error initializing Firebase: " + e.getMessage());
+                }
+            }
+
+}
 
 
 /* 
