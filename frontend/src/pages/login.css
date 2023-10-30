@@ -1,0 +1,139 @@
+
+body {
+    background-color: #C0A6F8;
+  }
+
+  .Up_bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /*background-color: #000000;*/
+    padding: 10px 20px ; 
+    border-radius: 0 0 150px 150px; 
+    position: relative;
+    top: 30px;
+  }
+
+  .home_list{
+  font-family: 'Poppins', sans-serif; 
+  color: #000000;
+  font-weight: bold;
+  font-size: 15px; 
+  right: 70px;
+  position: absolute;
+  }
+
+  .home_list li {
+    display: inline-block;
+    cursor: pointer;
+  margin-right: 50px;
+  }
+
+  .home_logo{
+    right: 40px;
+  position: absolute;
+  margin-right: 10px;
+  cursor: pointer;
+  }
+
+  
+  .subTitle{
+    font-size: 35px;  
+    color: #000000;
+    position: absolute;
+    left: 100px;
+    top: 80px;
+  }
+
+  .hook_1{
+    color: #000000;
+    position: absolute;
+    left: 100px;
+    top: 140px;
+  }
+  .hook_2{
+    color: #2123c7;
+    position: absolute;
+    left: 300px;
+    top: 140px;
+    cursor: pointer;
+  }
+
+  .KU_Logo{
+    position: absolute;
+    right: 300px;
+    top: 140px;
+    
+  }
+
+  .input{
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 100px;
+    top: 240px;
+  }
+  
+  .email{
+    display: flex;
+    flex-direction: column;
+    align-items:baseline;
+  }
+  .email_box{
+    padding:10px;
+    width: 300px;
+    margin:10px 0;
+    border: 2px solid #eee;
+    border-radius:50px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.3);
+  }
+  .password{
+    display: flex;
+    flex-direction: column;
+    align-items:baseline;
+  }
+  .password_box{
+    padding:10px;
+    width: 300px;
+    margin:10px 0;
+    border: 2px solid #eee;
+    border-radius:50px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.3);
+  }
+
+  .btn_signin{
+  padding: 10px; 
+  border: none;
+  border-radius: 50px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: 'Poppins'; 
+  font-weight: 1000;
+  font-size: 15px;
+  background-color: #2123c7;
+  width: 330px;
+  }
+
+  .btn_signin:hover {
+    background-color: #ffffff;
+  }
+  .radio{
+    display: flex;
+  flex-direction:row;
+  align-items: baseline;
+  }
+  
+  .rememberMe{
+    display: flex;
+  align-items: center;
+  }
+
+  .forget{
+    color: #2123c7;
+    margin-left: 70px;
+    cursor: pointer;
+  }
+  
+
+
