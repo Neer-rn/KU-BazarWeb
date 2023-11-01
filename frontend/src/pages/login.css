@@ -14,7 +14,7 @@ body {
     top: 30px;
   }
 
-  .home_list{
+  .homeList{
   font-family: 'Poppins', sans-serif; 
   color: #000000;
   font-weight: bold;
@@ -23,7 +23,7 @@ body {
   position: absolute;
   }
 
-  .home_list li {
+  .homeList li {
     display: inline-block;
     cursor: pointer;
   margin-right: 50px;
@@ -37,7 +37,7 @@ body {
   }
 
   
-  .subTitle{
+  .sub_Title{
     font-size: 35px;  
     color: #000000;
     position: absolute;
@@ -45,13 +45,13 @@ body {
     top: 80px;
   }
 
-  .hook_1{
+  .newHook_1{
     color: #000000;
     position: absolute;
     left: 100px;
     top: 140px;
   }
-  .hook_2{
+  .newHook_2{
     color: #2123c7;
     position: absolute;
     left: 300px;

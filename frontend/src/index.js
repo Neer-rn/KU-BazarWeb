@@ -5,6 +5,9 @@ import { initializeApp } from "firebase/app";
 import 'firebase/auth';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Login from "./pages/login";
+import Home from "./pages/home";
 
 
 const firebaseConfig = {
@@ -28,7 +31,13 @@ initializeApp(firebaseConfig);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<App />} />
+        <Route path="login" element={<Login />} />
+        <Route path="home" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 reportWebVitals();

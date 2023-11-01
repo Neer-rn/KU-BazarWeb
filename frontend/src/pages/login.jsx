@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./login.css";
 import KULogo from "../resources/img/logo.png";
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -12,7 +12,7 @@ const Login = () => {
         const [email, setEmail] = useState('');
         const [password, setPassword] = useState('');
 
-        //const navigate = useNavigate();
+        const navigate = useNavigate();
 
         const handleLogin = (event) => {
           event.preventDefault();
@@ -22,22 +22,22 @@ const Login = () => {
           signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
               // User successfully logged in, you can redirect here.
-              //navigate('/home');
+              navigate('/home');
 
-              setErrorMessage('');
+              //setErrorMessage('');
             })
             .catch((error) => {
               // Handle login errors, e.g., incorrect password or non-registered email.
               console.log("Error:", error);
 
-              setErrorMessage('Login failed. Please check your email and password.'); 
+             // setErrorMessage('Login failed. Please check your email and password.'); 
             });
         }
     return (
         <div className="Login">
             <div className="Up_bar">
 
-            <div className="home_list">
+            <div className="homeList">
                 <li>Help</li>
                 <li>About us</li>
                 <li>Contact us</li>
@@ -68,12 +68,12 @@ const Login = () => {
 </div>
 
             </div>
-              <div className="middleParagraph">
+              <div className="middle_Paragraph">
                 
-                <h1 className="subTitle">WELCOME BACK!!      </h1>
+                <h1 className="sub_Title">WELCOME BACK!!      </h1>
                 <div className="hook">
-                <h4 className="hook_1">Don't have an account, </h4>
-                <h4 className="hook_2">Sign up</h4>
+                <h4 className="newHook_1">Don't have an account, </h4>
+                <h4 className="newHook_2">Sign up</h4>
                 </div>
               </div> 
               <div className="KU_Logo">
