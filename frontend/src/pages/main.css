@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #da7243;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000000;
+    padding: 1rem;
+    
+  }
+  
+  .website-name {
+    font-size: 50px;
+    font-family: 'Sansita'; 
+  color: #FFECA9;
+  font-weight: bold;
+  }
+
+
+  .noHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000000;
+    padding: 1rem;
+    margin-left: 200px;
+    margin-top: -40px;
+    
+  }
+  
+  
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    margin-left: 190px;
+  }
+  
+  nav li {
+    margin-right: 4rem;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #000000;
+  }
+  
+  .search-bar {
+    margin: 1rem;
+  }
+  
+  .search-bar input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    
+  }
+  
+  .icons {
+    display: flex;
+    margin-right: 10px;
+  }
+  
+  .favorite-icon {
+    font-size: 24px;
+    margin-right: 1rem;
+    color: black;
+    margin-right: 30px;
+  }
+  
+  .cart-icon {
+    font-size: 24px;
+    color: black;
+  }
+  
+  main {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+  
+  .category-options {
+    display: flex;
+    flex-direction: column;
+    margin-top: -40px;
+  }
+  
+  .category-item {  
+    list-style: none;
+    padding: 0;
+  }
+  
+  .category-item li {
+    display: block;
+    padding: 6px;
+  }
+  .category-item li:hover {
+    cursor: pointer;
+  }
+  
+  
+  .image-slider {
+    width: 70%;
+  }
+  
+  .slick-slider {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+  }
+  
+  .slick-dots {
+    text-align: center;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .slick-dots li {
+    display: inline-block;
+    margin: 0 4px;
+  }
+  
+  .slick-dots li button {
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 10px;
+    height: 10px;
+    padding: 5px;
+    cursor: pointer;
+    border: 1px solid #999;
+    border-radius: 50%;
+    background: transparent;
+    text-indent: -9999em;
+  }
+  
+  .slick-dots li.slick-active button {
+    background: #000000;
+  }
+  
