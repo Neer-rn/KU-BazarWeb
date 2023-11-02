@@ -32,6 +32,24 @@ const Home = () => {
     autoplay: true,
     autoplaySpeed: 3000,
   };
+};
+  const recentlyAddedItems = [
+    { id: 1, name: 'Product 1', image: 'product1.jpg' },
+    { id: 2, name: 'Product 2', image: 'product2.jpg' },
+    { id: 3, name: 'Product 3', image: 'product3.jpg' },
+    { id: 4, name: 'Product 4', image: 'product4.jpg' },
+    // Add more items as needed
+  ];
+  
+  const RecentlyAddedItems = () => {
+    const sliderSettings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4, // Show 4 items at a time
+      slidesToScroll: 1,
+    };
+  
 
   const images = [
     { name: 'Grills', src: GRILLS },
@@ -72,7 +90,7 @@ const Home = () => {
           </ul>
         </div>
         <div className="image-slider">
-          <Slider {...sliderSettings}>
+          <Slider {...sliderSettings} className='first'>
             {images.map((image, index) => (
               <div key={index} className="image-slide">
                 <img src={image.src} alt={image.name} />
@@ -81,6 +99,20 @@ const Home = () => {
           </Slider>
         </div>
       </main>
+
+      <div className="recently-added-items">
+      <h2>Recently Added Items</h2>
+      <Slider {...sliderSettings} className='second'>
+        {recentlyAddedItems.map((item) => (
+          <div key={item.id} className="item">
+            <img src={item.image} alt={item.name} />
+            <p>{item.name}</p>
+          </div>
+        ))}
+      </Slider>
+    </div>
+
+
     </div>
   );
 }

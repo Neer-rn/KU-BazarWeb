@@ -3,6 +3,9 @@ import "./login.css";
 import KULogo from "../resources/img/logo.png";
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect } from 'react';
+import {onAuthStateChanged } from 'firebase/auth';
 
 
 
@@ -21,10 +24,9 @@ const Login = () => {
       
           signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-              // User successfully logged in, you can redirect here.
-              navigate('/home');
-
-              //setErrorMessage('');
+              
+              
+              navigate('/home'); 
             })
             .catch((error) => {
               // Handle login errors, e.g., incorrect password or non-registered email.
@@ -33,7 +35,55 @@ const Login = () => {
              // setErrorMessage('Login failed. Please check your email and password.'); 
             });
         }
-    return (
+   
+        
+        
+         /* useEffect(() => {
+            const accessSecureEndpoint = async () => {
+              try {
+                const idToken = onAuthStateChanged(auth, (user) => {
+                  if (user) {
+                    // User is signed in
+                    user.getIdToken().then((idToken) => {
+                      // idToken is the Firebase ID token
+                      // You can use it to make authenticated requests to your backend
+                      console.log('Firebase ID token:', idToken);
+                    });
+                  } else {
+                    // User is signed out
+                    console.log('User is signed out');
+                  }
+                });
+        
+                const response = await axios.get('/api/secure-resource', {
+                  headers: {
+                    Authorization: `Bearer ${idToken}`,
+                  },
+                });
+        
+                console.log('Response from secure endpoint:', response.data);
+              } catch (error) {
+                console.error('Error accessing secure endpoint:', error);
+              }
+            };
+        
+            accessSecureEndpoint();
+          }, []);
+          
+          
+
+
+*/
+
+        
+   
+   
+   
+   
+   
+   
+   
+        return (
         <div className="Login">
             <div className="Up_bar">
 
@@ -110,6 +160,8 @@ const Login = () => {
         </div>
     );
 }
+
+
 
 export default Login;
 
