@@ -1,6 +1,6 @@
 
 import './App.css';
-import Main from './pages/main';
+import Sell from './pages/sell.jsx';
 //import Home from './pages/home';
 //import { BrowserRouter as Router, Route} from 'react-router-dom';
 
@@ -9,7 +9,7 @@ import Main from './pages/main';
 function App() {
   return (
     <div className="App">
-      <Main/>
+      <Sell/>
           
     </div>
   );

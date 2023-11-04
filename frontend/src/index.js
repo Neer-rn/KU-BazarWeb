@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { initializeApp } from "firebase/app";
+import { getStorage } from 'firebase/storage';
 import 'firebase/auth';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -26,7 +27,15 @@ const firebaseConfig = {
   measurementId: "G-9859KB9CV1"
 };
 
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+const storage = getStorage(app);
+
+export { storage };
+
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

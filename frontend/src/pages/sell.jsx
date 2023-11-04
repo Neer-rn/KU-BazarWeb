@@ -1,64 +1,112 @@
 import React, { useState } from 'react';
+import { useEffect } from "react";
+import { storage } from '../index.js'; // Import Firebase storage
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  list,
+} from "firebase/storage";
+import { v4 } from "uuid";
+//import axios from 'axios';
 
 const Sell = () => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [image, setImage] = useState(null); // For file upload
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrls, setImageUrls] = useState([]);
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
+  const imagesListRef = ref(storage, "images/");
+  const uploadFile = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls((prev) => [...prev, url]);
+      });
+    });
   };
 
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-  };
-
-  const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    setImage(selectedImage);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Perform image upload to Firebase Storage if needed
-    // Then get the image URL from Firebase Storage
-
-    // Create an item object with the collected data
-    const newItem = {
-      title,
-      description,
-      imageUrl: 'URL_TO_UPLOADED_IMAGE', // Replace with the actual URL
-    };
-
-    // Send the data to your Spring Boot backend for storage
-    // You can use Axios or the Fetch API to make a POST request
-
-    // Example using Axios:
-    // axios.post('/api/add-item', newItem)
-  };
+  /*useEffect(() => {
+    listAll(imagesListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageUrls((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);*/
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={handleTitleChange}
-      />
-      <textarea
-        placeholder="Description"
-        value={description}
-        onChange={handleDescriptionChange}
-      />
+    <div>
       <input
         type="file"
-        accept="image/*"
-        onChange={handleImageChange}
+        onChange={(event) => {
+          setImageUpload(event.target.files[0]);
+        }}
       />
-      <button type="submit">Add Item</button>
-    </form>
+      <button onClick={uploadFile}> Upload Image</button>
+      {imageUrls.map((url) => {
+        return <img src={url} />;
+      })}
+      </div>
   );
 };
 
 export default Sell;
+
+
+/*
+import "./App.css";
+import { useState, useEffect } from "react";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  list,
+} from "firebase/storage";
+import { storage } from "./firebase";
+import { v4 } from "uuid";
+
+function App() {
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrls, setImageUrls] = useState([]);
+
+  const imagesListRef = ref(storage, "images/");
+  const uploadFile = () => {
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls((prev) => [...prev, url]);
+      });
+    });
+  };
+
+  useEffect(() => {
+    listAll(imagesListRef).then((response) => {
+      response.items.forEach((item) => {
+        getDownloadURL(item).then((url) => {
+          setImageUrls((prev) => [...prev, url]);
+        });
+      });
+    });
+  }, []);
+
+  return (
+    <div className="App">
+      <input
+        type="file"
+        onChange={(event) => {
+          setImageUpload(event.target.files[0]);
+        }}
+      />
+      <button onClick={uploadFile}> Upload Image</button>
+      {imageUrls.map((url) => {
+        return <img src={url} />;
+      })}
+    </div>
+  );
+}
+
+export default App; */
