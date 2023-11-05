@@ -26,6 +26,17 @@ const Sell = () => {
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageUrls((prev) => [...prev, url]);
+        uploadMultiFile();
+      });
+    });
+  };
+
+  const uploadMultiFile = () => {
+    if (imageUrls == null) return;
+    const multimg = ref(storage, `images/${imageUpload.name + v4()}`);
+    uploadBytes(multimg, imageUrls).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUrls((prev) => [...prev, url]);
       });
     });
   };
@@ -35,18 +46,19 @@ const Sell = () => {
       <h2>Sell Your Items</h2>
       <p>Describe your item and upload images to start selling.</p>
       <div className="sell-form">
+      <input
+          type="text"
+          placeholder="Product Name"
+          value={productName}
+          onChange={(event) => setProductName(event.target.value)}
+        />
         <input
           type="file"
           onChange={(event) => {
             setImageUpload(event.target.files[0]);
           }}
         />
-        <input
-          type="text"
-          placeholder="Product Name"
-          value={productName}
-          onChange={(event) => setProductName(event.target.value)}
-        />
+        
         <input
           type="text"
           placeholder="Small Description"
@@ -76,6 +88,14 @@ const Sell = () => {
           <option value="Category-1">Fixed</option>
           <option value="Category-2">Negotiable</option>
         </select>
+
+        <input
+          type="file"
+          onChange={(event) => {
+            setImageUrls(event.target.files[0]);
+            
+          }}
+        />
         <input
           type="number"
           placeholder="Price"
@@ -94,7 +114,34 @@ const Sell = () => {
           value={quantity}
           onChange={(event) => setQuantity(event.target.value)}
         />
-        </div>
+
+<input
+          type="text"
+          placeholder="Seller Full Name"
+          value={sellerName}
+          onChange={(event) => setSellerName(event.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Product Address"
+          value={productAddress}
+          onChange={(event) => setProductAddress(event.target.value)}
+        />
+        <select value={paymentMethod} onChange={(event) => setPaymentMethod(event.target.value)}>
+          <option value="Cash">Cash</option>
+          <option value="Accept Online Payments">Accept Online Payments</option>
+        </select>
+        <textarea
+          placeholder="Return Policy"
+          value={returnPolicy}
+          onChange={(event) => setReturnPolicy(event.target.value)}
+        />
+      </div>
+      
+
+        <button onClick={uploadFile}>Sell Now</button>
+
+
         </div>
   );
         };
