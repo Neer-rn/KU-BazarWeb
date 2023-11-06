@@ -31,15 +31,23 @@ const Sell = () => {
     });
   };
 
+  const metadata = {
+    contentType: ['image/jpg'],
+  };
+
   const uploadMultiFile = () => {
-    if (imageUrls == null) return;
-    const multimg = ref(storage, `images/${imageUpload.name + v4()}`);
-    uploadBytes(multimg, imageUrls).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        setImageUrls((prev) => [...prev, url]);
+    if (imageUrls.length === 0) return;
+  
+    imageUrls.forEach((file) => {
+      const multimg = ref(storage, `images/${file.name + v4()}`);
+      uploadBytes(multimg, file, metadata).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((url) => {
+          setImageUrls((prev) => [...prev, url]);
+        });
       });
     });
   };
+  
 
   return (
     <div className="sell-container">
@@ -91,8 +99,9 @@ const Sell = () => {
 
         <input
           type="file"
+          multiple
           onChange={(event) => {
-            setImageUrls(event.target.files[0]);
+            setImageUrls(Array.from(event.target.files));
             
           }}
         />
@@ -128,8 +137,8 @@ const Sell = () => {
           onChange={(event) => setProductAddress(event.target.value)}
         />
         <select value={paymentMethod} onChange={(event) => setPaymentMethod(event.target.value)}>
-          <option value="Cash">Cash</option>
           <option value="Accept Online Payments">Accept Online Payments</option>
+          <option value="Cash">Only Cash</option>
         </select>
         <textarea
           placeholder="Return Policy"
