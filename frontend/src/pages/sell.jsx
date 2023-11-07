@@ -3,6 +3,11 @@ import { storage } from '../index.js';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
 import './sell.css';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+
+
+
+
 
 const Sell = () => {
   const [imageUpload, setImageUpload] = useState(null);
@@ -20,6 +25,37 @@ const Sell = () => {
   const [paymentMethod, setPaymentMethod] = useState('Cash');
   const [returnPolicy, setReturnPolicy] = useState('');
 
+
+  const db = getFirestore();
+
+const otherData = async () => {
+  // Create a data object with all the form fields
+  const formData = {
+    productName,
+    smallDescription,
+    category,
+    price,
+    longDescription,
+    condition,
+    quantity,
+    priceType,
+    sellerName,
+    productAddress,
+    paymentMethod,
+    returnPolicy,
+  };
+
+  try {
+    // Add the data to Firestore
+    const docRef = await addDoc(collection(db, 'products'), formData);
+    console.log('Document written with ID: ', docRef.id);
+  } catch (error) {
+    console.error('Error adding document: ', error);
+  }
+};
+
+
+
   const uploadFile = () => {
     if (imageUpload == null) return;
     const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
@@ -27,6 +63,7 @@ const Sell = () => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageUrls((prev) => [...prev, url]);
         uploadMultiFile();
+        otherData();
       });
     });
   };

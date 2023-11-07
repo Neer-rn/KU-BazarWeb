@@ -1,7 +1,7 @@
 
 import './App.css';
 import Sell from './pages/sell.jsx';
-//import Home from './pages/home';
+//import RecentlyAddedItems from './pages/main';
 //import { BrowserRouter as Router, Route} from 'react-router-dom';
 
 

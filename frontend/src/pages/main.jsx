@@ -22,7 +22,7 @@ const categories = [
   "Miscellaneous",
 ];
 
-const Home = () => {
+const Main = () => {
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -32,8 +32,8 @@ const Home = () => {
     autoplay: true,
     autoplaySpeed: 3000,
   };
-};
-  const recentlyAddedItems = [
+
+  /*const recentlyAddedItems = [
     { id: 1, name: 'Product 1', image: 'product1.jpg' },
     { id: 2, name: 'Product 2', image: 'product2.jpg' },
     { id: 3, name: 'Product 3', image: 'product3.jpg' },
@@ -41,14 +41,7 @@ const Home = () => {
     // Add more items as needed
   ];
   
-  const RecentlyAddedItems = () => {
-    const sliderSettings = {
-      dots: false,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 4, // Show 4 items at a time
-      slidesToScroll: 1,
-    };
+  */
   
 
   const images = [
@@ -68,7 +61,7 @@ const Home = () => {
           <ul>
             <li><Link to="/home">Home</Link></li>
             <li><Link to="/contact">Contact Us</Link></li>
-            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/about-us">About Us</Link></li>
             <li><Link to="/logout">Logout</Link></li>
           </ul>
         </nav>
@@ -100,24 +93,14 @@ const Home = () => {
         </div>
       </main>
 
-      <div className="recently-added-items">
-      <h2>Recently Added Items</h2>
-      <Slider {...sliderSettings} className='second'>
-        {recentlyAddedItems.map((item) => (
-          <div key={item.id} className="item">
-            <img src={item.image} alt={item.name} />
-            <p>{item.name}</p>
-          </div>
-        ))}
-      </Slider>
-    </div>
+      
 
 
     </div>
   );
-}
+        };
 
-export default Home;
+export default Main;
 
 
 
