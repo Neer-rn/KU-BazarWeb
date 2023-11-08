@@ -47,14 +47,14 @@ const Main = () => {
   const [imageUrls, setImageUrls] = useState([]);
 
   useEffect(() => {
-    // Firestore: Create a reference to your collection
+
     const formCollection = collection(db, 'products');
 
-    // Firestore: Listen for real-time updates in the collection
+
     const unsubscribeForm = onSnapshot(formCollection, (querySnapshot) => {
       const formDataArray = [];
       querySnapshot.forEach((doc) => {
-        // Push each document's data to the array
+
         formDataArray.push(doc.data());
       });
       setFormData(formDataArray);
@@ -83,7 +83,6 @@ const downloadAndDisplayImages = async () => {
 };
 
 
-  // Use useEffect to load the images when the component mounts
   useEffect(() => {
     downloadAndDisplayImages();
   }, []);
