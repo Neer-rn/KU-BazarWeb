@@ -9,6 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/login";
 import Home from "./pages/home";
+import { getFirestore} from 'firebase/firestore';
 
 
 const firebaseConfig = {
@@ -31,6 +32,9 @@ const app = initializeApp(firebaseConfig);
 
 const storage = getStorage(app);
 
+const db = getFirestore(app);
+
+export { db };
 
 export { storage };
 

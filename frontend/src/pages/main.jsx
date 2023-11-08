@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './main.css';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
@@ -9,6 +9,11 @@ import FASHION from '../resources/img/fashion.png';
 import FURNITURE from '../resources/img/furniture.png';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { db } from '../index.js';
+
+
+
 
 const categories = [
   "Furniture",
@@ -40,8 +45,39 @@ const Main = () => {
     { id: 4, name: 'Product 4', image: 'product4.jpg' },
     // Add more items as needed
   ];
-  
   */
+
+  /*async function getFormDataFromFirestore() {
+    const querySnapshot = await getDocs(collection(db, 'products'));
+    const formData = [];
+    querySnapshot.forEach((doc) => {
+      formData.push(doc.data());
+    });
+    return formData;
+  }*/
+  
+
+  const [formData, setFormData] = useState([]);
+
+useEffect(() => {
+  // Create a reference to the 'products' collection
+  const productsRef = collection(db, 'products');
+
+  // Create a real-time listener for the 'products' collection
+  const unsubscribe = onSnapshot(productsRef, (querySnapshot) => {
+    const data = [];
+    querySnapshot.forEach((doc) => {
+      data.push(doc.data());
+    });
+    setFormData(data);
+  });
+
+  // Clean up the listener when the component unmounts
+  return () => {
+    unsubscribe();
+  };
+}, []); // Empty dependency array for initial load only
+
   
 
   const images = [
@@ -73,7 +109,7 @@ const Main = () => {
           <FaShoppingCart className="cart-icon" />
         </div>
       </div>
-
+fvc 
       <main>
         <div className="category-options">
           <ul className='category-item'>
@@ -93,26 +129,25 @@ const Main = () => {
         </div>
       </main>
 
-      
+      <div>
+    {/* Your existing code for header and categories */}
+    <main>
+      {/* Display the form data */}
+      {formData.map((data, index) => (
+        <div key={index}>
+          <h3>{data.productName}</h3>
+          <p>{data.smallDescription}</p>
+          {/* Display other form data fields as needed */}
+        </div>
+      ))}
 
+    </main>
+  </div>
 
     </div>
   );
         };
 
 export default Main;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -6,9 +6,6 @@ import './sell.css';
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
 
-
-
-
 const Sell = () => {
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrls, setImageUrls] = useState([]);

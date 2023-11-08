@@ -1,7 +1,7 @@
 
 import './App.css';
-import Sell from './pages/sell.jsx';
-//import RecentlyAddedItems from './pages/main';
+//import Sell from './pages/sell.jsx';
+import Main from './pages/main';
 //import { BrowserRouter as Router, Route} from 'react-router-dom';
 
 
@@ -9,7 +9,7 @@ import Sell from './pages/sell.jsx';
 function App() {
   return (
     <div className="App">
-      <Sell/>
+      <Main/>
           
     </div>
   );
