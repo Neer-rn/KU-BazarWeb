@@ -37,48 +37,7 @@ const Login = () => {
         }
    
         
-        
-         /* useEffect(() => {
-            const accessSecureEndpoint = async () => {
-              try {
-                const idToken = onAuthStateChanged(auth, (user) => {
-                  if (user) {
-                    // User is signed in
-                    user.getIdToken().then((idToken) => {
-                      // idToken is the Firebase ID token
-                      // You can use it to make authenticated requests to your backend
-                      console.log('Firebase ID token:', idToken);
-                    });
-                  } else {
-                    // User is signed out
-                    console.log('User is signed out');
-                  }
-                });
-        
-                const response = await axios.get('/api/secure-resource', {
-                  headers: {
-                    Authorization: `Bearer ${idToken}`,
-                  },
-                });
-        
-                console.log('Response from secure endpoint:', response.data);
-              } catch (error) {
-                console.error('Error accessing secure endpoint:', error);
-              }
-            };
-        
-            accessSecureEndpoint();
-          }, []);
-          
-          
 
-
-*/
-
-        
-   
-   
-   
    
    
    
