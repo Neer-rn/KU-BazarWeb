@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './main.css';
+import './sell.jsx';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
@@ -11,6 +12,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../index.js';
+import { ref, getDownloadURL, listAll } from 'firebase/storage';
+import { storage } from '../index.js';
 
 
 
@@ -27,6 +30,7 @@ const categories = [
   "Miscellaneous",
 ];
 
+
 const Main = () => {
   const sliderSettings = {
     dots: true,
@@ -38,47 +42,51 @@ const Main = () => {
     autoplaySpeed: 3000,
   };
 
-  /*const recentlyAddedItems = [
-    { id: 1, name: 'Product 1', image: 'product1.jpg' },
-    { id: 2, name: 'Product 2', image: 'product2.jpg' },
-    { id: 3, name: 'Product 3', image: 'product3.jpg' },
-    { id: 4, name: 'Product 4', image: 'product4.jpg' },
-    // Add more items as needed
-  ];
-  */
-
-  /*async function getFormDataFromFirestore() {
-    const querySnapshot = await getDocs(collection(db, 'products'));
-    const formData = [];
-    querySnapshot.forEach((doc) => {
-      formData.push(doc.data());
-    });
-    return formData;
-  }*/
-  
 
   const [formData, setFormData] = useState([]);
+  const [imageUrls, setImageUrls] = useState([]);
 
-useEffect(() => {
-  // Create a reference to the 'products' collection
-  const productsRef = collection(db, 'products');
+  useEffect(() => {
+    // Firestore: Create a reference to your collection
+    const formCollection = collection(db, 'products');
 
-  // Create a real-time listener for the 'products' collection
-  const unsubscribe = onSnapshot(productsRef, (querySnapshot) => {
-    const data = [];
-    querySnapshot.forEach((doc) => {
-      data.push(doc.data());
+    // Firestore: Listen for real-time updates in the collection
+    const unsubscribeForm = onSnapshot(formCollection, (querySnapshot) => {
+      const formDataArray = [];
+      querySnapshot.forEach((doc) => {
+        // Push each document's data to the array
+        formDataArray.push(doc.data());
+      });
+      setFormData(formDataArray);
     });
-    setFormData(data);
-  });
 
-  // Clean up the listener when the component unmounts
-  return () => {
-    unsubscribe();
-  };
-}, []); // Empty dependency array for initial load only
 
-  
+    return () => {
+      unsubscribeForm();
+    };
+  }, []); 
+
+
+const downloadAndDisplayImages = async () => {
+
+  const imageRef = ref(storage, 'images'); 
+
+  try {
+    const imageList = await listAll(imageRef);
+    const urls = await Promise.all(imageList.items.map(async (image) => {
+      return getDownloadURL(image);
+    }));
+    setImageUrls(urls);
+  } catch (error) {
+    console.error('Error downloading images: ', error);
+  }
+};
+
+
+  // Use useEffect to load the images when the component mounts
+  useEffect(() => {
+    downloadAndDisplayImages();
+  }, []);
 
   const images = [
     { name: 'Grills', src: GRILLS },
@@ -109,7 +117,6 @@ useEffect(() => {
           <FaShoppingCart className="cart-icon" />
         </div>
       </div>
-fvc 
       <main>
         <div className="category-options">
           <ul className='category-item'>
@@ -130,19 +137,24 @@ fvc
       </main>
 
       <div>
-    {/* Your existing code for header and categories */}
-    <main>
-      {/* Display the form data */}
-      {formData.map((data, index) => (
-        <div key={index}>
+      {/* Display your form data */}
+      <div className='formData'>
+        {formData.map((data, index) => (
+          <div key={index}>
           <h3>{data.productName}</h3>
           <p>{data.smallDescription}</p>
-          {/* Display other form data fields as needed */}
-        </div>
-      ))}
+            {/* Display other form data fields as needed */}
+          </div>
+        ))}
+      </div>
 
-    </main>
-  </div>
+      {/* Display your images */}
+      <div>
+        {imageUrls.map((imageUrl, index) => (
+          <img key={index} src={imageUrl} alt={`images ${index}`} />
+        ))}
+      </div>
+    </div>
 
     </div>
   );

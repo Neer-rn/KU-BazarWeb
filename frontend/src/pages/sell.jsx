@@ -55,7 +55,7 @@ const otherData = async () => {
 
   const uploadFile = () => {
     if (imageUpload == null) return;
-    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    const imageRef = ref(storage, `single/${imageUpload.name + v4()}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageUrls((prev) => [...prev, url]);
@@ -73,7 +73,7 @@ const otherData = async () => {
     if (imageUrls.length === 0) return;
   
     imageUrls.forEach((file) => {
-      const multimg = ref(storage, `images/${file.name + v4()}`);
+      const multimg = ref(storage, `multiple/${file.name + v4()}`);
       uploadBytes(multimg, file, metadata).then((snapshot) => {
         getDownloadURL(snapshot.ref).then((url) => {
           setImageUrls((prev) => [...prev, url]);
