@@ -69,7 +69,7 @@ const Main = () => {
 
 const downloadAndDisplayImages = async () => {
 
-  const imageRef = ref(storage, 'images'); 
+  const imageRef = ref(storage, 'single'); 
 
   try {
     const imageList = await listAll(imageRef);
@@ -132,29 +132,30 @@ const downloadAndDisplayImages = async () => {
               </div>
             ))}
           </Slider>
-        </div>
+          </div>
       </main>
 
-      <div>
-      {/* Display your form data */}
-      <div className='formData'>
-        {formData.map((data, index) => (
-          <div key={index}>
-          <h3>{data.productName}</h3>
-          <p>{data.smallDescription}</p>
-            {/* Display other form data fields as needed */}
+          <div>
+          <h2 className='recent'>Recently Added Items</h2>
+        <main>
+          
+
+          <div className="recent-items-container">
+            {formData.map((data, index) => (
+              <div key={index} className="item-box">
+                <img src={imageUrls[index]} alt={`Item ${index}`} />
+
+                <div className="item-details">
+                  <h3>{data.productName}</h3>
+                  <p>{data.smallDescription}</p>
+                  {/* Display other form data fields as needed */}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </main>
       </div>
-
-      {/* Display your images */}
-      <div>
-        {imageUrls.map((imageUrl, index) => (
-          <img key={index} src={imageUrl} alt={`images ${index}`} />
-        ))}
-      </div>
-    </div>
-
+ 
     </div>
   );
         };
@@ -162,3 +163,31 @@ const downloadAndDisplayImages = async () => {
 export default Main;
 
 
+
+
+/*<div>
+      <h2 className='recent'>Recently Added Items</h2>
+      
+
+      <div className="recent-items-container">
+
+      <div className='both'>
+      <div className='formData'>
+        {formData.map((data, index) => (
+          <div key={index} className="item-box">
+          <h3>{data.productName}</h3>
+          <p>{data.smallDescription}</p>
+          
+          </div>
+        ))}
+      </div>
+
+      
+      <div>
+        {imageUrls.map((imageUrl, index) => (
+          <img key={index} className="item-box" src={imageUrl} alt={`images ${index}`} />
+        ))}
+      </div>
+    </div>
+    </div>
+    </div> */

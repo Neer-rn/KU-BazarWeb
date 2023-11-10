@@ -26,7 +26,7 @@ const Login = () => {
             .then((userCredential) => {
               
               
-              navigate('/home'); 
+              navigate('/main'); 
             })
             .catch((error) => {
               // Handle login errors, e.g., incorrect password or non-registered email.

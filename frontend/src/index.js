@@ -9,6 +9,9 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/login";
 import Home from "./pages/home";
+import Sell from "./pages/sell";
+import Signup from "./pages/signup";
+import Main from "./pages/main";
 import { getFirestore} from 'firebase/firestore';
 
 
@@ -48,6 +51,9 @@ root.render(
         <Route index element={<App />} />
         <Route path="login" element={<Login />} />
         <Route path="home" element={<Home />} />
+        <Route path="sell" element={<Sell />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="main" element={<Main />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
