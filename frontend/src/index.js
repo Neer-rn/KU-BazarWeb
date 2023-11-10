@@ -12,6 +12,7 @@ import Home from "./pages/home";
 import Sell from "./pages/sell";
 import Signup from "./pages/signup";
 import Main from "./pages/main";
+import Footer from "./pages/footer";
 import { getFirestore} from 'firebase/firestore';
 
 
@@ -54,6 +55,7 @@ root.render(
         <Route path="sell" element={<Sell />} />
         <Route path="signup" element={<Signup />} />
         <Route path="main" element={<Main />} />
+        <Route path="footer" element={<Footer />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
