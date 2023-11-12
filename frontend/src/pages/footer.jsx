@@ -6,13 +6,13 @@ const Footer = () => {
   return (
     <footer className="footer-container">
       <div className="footer-content">
-        <div className="footer-section">
-          <h3>About Us</h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            eget sem vel leo aliquam tincidunt.
-          </p>
-        </div>
+      <div className="footer-section">
+          <h3>Subscribe to Our Newsletter</h3>
+          <p>Get exclusive updates and offers straight to your inbox.</p>
+          <div className="subscribe-form">
+            <input type="email" placeholder="Your email" /> <br/>
+            <button>Subscribe</button>
+          </div>
         <div className="footer-section">
           <h3>Contact Information</h3>
           <p>
@@ -23,21 +23,21 @@ const Footer = () => {
             Phone: +977 9761665790
           </p>
         </div>
+        
         <div className="footer-section">
-          <h3>Follow Us</h3>
-          <p>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              Twitter
-            </a>
-            <br />
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-              Facebook
-            </a>
-          </p>
+          <h3>Account</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Sell</a></li>
+            <li><a href="#">Signup/Login</a></li>
+            <li><a href="#">Shop</a></li>
+          </ul>
         </div>
+
       </div>
       <div className="footer-bottom">
         <p>&copy;  Copyright KU-Bazar 2023. All rights reserved.</p>
+      </div>
       </div>
     </footer>
   );
