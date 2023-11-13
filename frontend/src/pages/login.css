@@ -14,6 +14,11 @@ body {
     top: 30px;
   }
 
+  .content{
+    padding-bottom: 800px;
+    flex: 1;
+  }
+
   .homeList{
   font-family: 'Poppins', sans-serif; 
   color: #000000;
@@ -135,5 +140,9 @@ body {
     cursor: pointer;
   }
   
-
+.Footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
 

@@ -3,6 +3,7 @@ import "./login.css";
 import KULogo from "../resources/img/logo.png";
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import Footer from "./footer";
 //import axios from 'axios';
 //import { useEffect } from 'react';
 //import {onAuthStateChanged } from 'firebase/auth';
@@ -44,6 +45,7 @@ const Login = () => {
    
         return (
         <div className="Login">
+        <div className="content">
             <div className="Up_bar">
 
             <div className="homeList">
@@ -113,10 +115,12 @@ const Login = () => {
         <button className='btn_signin' type="submit">Sign In</button>
       </form>
 </div>
-           
-            
-
+</div>
+           <div className="Footer">
+           <Footer/> 
+           </div>
         </div>
+        
     );
 }
 

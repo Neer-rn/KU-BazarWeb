@@ -32,10 +32,10 @@ const Footer = () => {
         <div className='sub'>
           <h3>Account</h3>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Sell</a></li>
-            <li><a href="#">Signup/Login</a></li>
-            <li><a href="#">Shop</a></li>
+            <li><a href="">Home</a></li>
+            <li><a href="">Sell</a></li>
+            <li><a href="">Signup/Login</a></li>
+            <li><a href="">Shop</a></li>
           </ul>
           </div>
         </div>
